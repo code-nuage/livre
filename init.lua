@@ -2,8 +2,9 @@ _G.curses = require("curses")
 
 _G.livre = {}
 
+os.setlocale('C.UTF-8')
+
 local base = string.sub(..., 1, -6)
-os.setlocale('UTF-8')
 
 livre.modules = {
     "run",
