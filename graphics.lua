@@ -27,6 +27,23 @@ graphics.rectangle = function(mode, x, y, w, h)
     end
 end
 
+graphics.set_color = function(foreground, background)
+    if foreground and background then
+        livre.color = curses.init_pair(1, foreground, background)
+    elseif foreground then
+        livre.color = curses.init_pair(1, foreground, -1)
+    end
+end
+
+graphics.set_color_mode = function(mode)
+    assert(type(mode) == "boolean", "color mode should be a boolean")
+    if mode == true then
+        livre.screen:attron(curses.color_pair(1))
+    else
+        livre.screen:attroff(curses.color_pair(1))
+    end
+end
+
 graphics.get_dimensions = function()
     local height, width = livre.screen:getmaxyx()
     return width, height

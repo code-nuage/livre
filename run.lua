@@ -10,10 +10,13 @@ local init = function()
 
     curses.echo(false)
     curses.nl(false)
+    curses.start_color()
     curses.curs_set(0)
     curses.keypad(true)
 
     livre.screen:nodelay(true)
+    curses.init_pair(1, curses.COLOR_WHITE, curses.COLOR_BLACK)
+    livre.screen:attron(curses.color_pair(1))
 
     if type(livre.load) == "function" then
         livre.load()
